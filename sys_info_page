@@ -7,14 +7,7 @@ TIMESTAMP="Generated at $CURRENT_TIME by $USER"
 
 
 report_uptime () {
-    return 
-}
-
-report_disk_space () {
-    return 
-}
-
-report_home_space () {
+    echo "System uptime: $(uptime)"
     return 
 }
 
@@ -27,8 +20,6 @@ cat << _EOF_
       <H1>$TITLE</H1>
       <P>$TIMESTAMP</P>
       $(report_uptime)
-      $(report_disk_space)
-      $(report_home_space)
   </BODY>
 </HTML>
 _EOF_
