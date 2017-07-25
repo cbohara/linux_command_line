@@ -12,3 +12,8 @@ exit code
     0 = success
     1 = failure
     echo $? will show exit code in stdout
+
+< (less than) and > (greater than)
+    must have quotes around them when using test
+    otherwise interpreted by shell as redirection operators
+    ASCII used for string comparisons
