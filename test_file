@@ -1,0 +1,13 @@
+!#/bin/bash
+
+# Evaluate the status of a file
+
+FILE=~/.bashrc
+
+# -e return true if file exists
+if [ -e "$FILE" ]; then
+    # -f returns true if file exists and it is a regular file
+    if [ -f "$FILE" ]; then
+        echo "$FILE is a regular file"
+    fi
+fi
