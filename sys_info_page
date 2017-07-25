@@ -7,27 +7,18 @@ CURRENT_TIME=$(date +"%x %r %Z")
 TIMESTAMP="Generated $CURRENT_TIME, by $USER"
 
 report_uptime () {
-cat << _EOF_
-<H2>System Uptime</H2>
-        <PRE>$(uptime)</PRE>
-_EOF_
-return
+    echo "report_uptime"
+    return
 }
 
 report_disk_space () {
-cat << _EOF_
-<H2>System Disk Space</H2>
-        <PRE>$(df -h)</PRE>
-_EOF_
-return
+    echo "report_disk_space"
+    return
 }
 
 report_home_space () {
-cat << _EOF_
-<H2>System Home Space</H2>
-        <PRE>$(du -sh /Users/*)</PRE>
-_EOF_
-return
+    echo "report_home_space"
+    return
 }
 
 
