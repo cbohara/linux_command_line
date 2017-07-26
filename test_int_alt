@@ -1,0 +1,34 @@
+#!/bin/bash
+
+INT=-5
+
+# [[ expression ]] is an enhanced replacement for test
+# allows for regex testing
+# if we did not have this string ~= regex and INT did not contain an integer > script would fail
+
+# ^ matches the beginning of text for optional (? matches for 0 or 1 of preceeding token) - char
+# [0-9] matches numbers in range 0-9
+# + matches 1 or more of preceeding [0-9] for integers with multiple digits
+if [[ "$INT" ~= ^-?[0-9]+ ]]; then
+    if [ $INT -eq 0 ]; then
+        echo "INT is zero"
+    else
+        if [ $INT -lt 0 ]; then
+            echo "INT is negative"
+        else
+            echo "INT is positive"
+        fi
+    
+        # $(( )) used for math evaluation
+        if [ $(($INT % 2)) -eq 0 ]; then
+            echo "INT is even"
+        else
+            echo "INT is odd"
+        fi
+    fi
+else
+    # echo to STDERR
+    echo "INT is not an integer" >&2
+    # provide exit status code for failure
+    exit 1
+fi
