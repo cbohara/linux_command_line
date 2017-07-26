@@ -2,8 +2,9 @@
 
 # Evalute the value of a string
 
-ANSWER=
+ANSWER=yes
 
+# using quotes around the parameter ensures that the operator is always followed by a string
 # -z returns true if length of string is 0
 if [ -z "$ANSWER" ]; then
     # echo to STDERR
