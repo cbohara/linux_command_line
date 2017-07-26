@@ -32,4 +32,17 @@ test [ ]
         parameter $ANSWER is surrounded by quotes to ensure the operator is always followed by a string
         avoids potential error of -e being interpreted as a non-null string if $ANSWER is empty
 
-
+control operators
+    command1 && command2
+        command1 and command2 are executed if and only if command1 is successful
+        ex: mkdir temp && cd temp
+            create temp dir and then cd into temp only if mkdir successfully ran
+    command1 || command2
+        command1 and command2 are executed if and only if command1 is unsuccessful
+        command1 successful => don't run command2
+        command1 unsuccessful => run command2
+        ex: [[ -d temp ]] || mkdir temp
+            test for the existance of the directory temp
+            if temp does not exist then directory is created 
+        ex: [[ -d temp ]] || exit 1
+            if the script requires directory temp and it does not exist => exit with status 1
