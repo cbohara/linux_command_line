@@ -9,7 +9,7 @@ ANSWER=yes
 if [ -z "$ANSWER" ]; then
     # echo to STDERR
     echo "There is no answer" >&2
-    # return exit status 
+    # exit will exit out of the script and return status code of 1
     exit 1
 fi
 
