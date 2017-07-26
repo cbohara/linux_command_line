@@ -9,18 +9,20 @@ INT=-5
 # ^ matches the beginning of text for optional (? matches for 0 or 1 of preceeding token) - char
 # [0-9] matches numbers in range 0-9
 # + matches 1 or more of preceeding [0-9] for integers with multiple digits
-if [[ "$INT" ~= ^-?[0-9]+ ]]; then
-    if [ $INT -eq 0 ]; then
+
+if [[ "$INT" =~ ^-?[0-9]+$ ]]; then
+
+    # when using (( )) arithmetic truth test do not need to add $ for expansion
+    if ((INT == 0)); then
         echo "INT is zero"
     else
-        if [ $INT -lt 0 ]; then
+        if ((INT < 0)); then
             echo "INT is negative"
         else
             echo "INT is positive"
         fi
-    
-        # $(( )) used for math evaluation
-        if [ $(($INT % 2)) -eq 0 ]; then
+
+        if (( ((INT % 2)) == 0 )); then
             echo "INT is even"
         else
             echo "INT is odd"
