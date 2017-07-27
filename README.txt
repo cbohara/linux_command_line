@@ -46,3 +46,10 @@ control operators
             if temp does not exist then directory is created 
         ex: [[ -d temp ]] || exit 1
             if the script requires directory temp and it does not exist => exit with status 1
+
+you can't pipe read
+    pipelines create subshells
+    subshells create copies of the environment for the processes to use while they execute 
+    when the process finishes the copy of the environment is destroyed
+    therefore a subshell can never alter the environment of its parent processes
+
