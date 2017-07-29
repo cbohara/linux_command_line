@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Input a secret passphrase
+# Testing git
 
 # -t 10 wil terminate input after 10 seconds
 # -s will not echo chars to the display as they are typed = useful for passwords
