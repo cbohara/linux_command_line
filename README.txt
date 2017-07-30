@@ -53,3 +53,6 @@ you can't pipe read
     when the process finishes the copy of the environment is destroyed
     therefore a subshell can never alter the environment of its parent processes
 
+shell allows 1+ variable assignments to take place immediately before a command
+the assignment will alter the environment for the duration of the command execution
+once the command has completed the varible no longer exists
