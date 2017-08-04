@@ -2,7 +2,6 @@
 
 # Program to output a system info page
 
-# name of shell script (sys_info_page.sh)
 PROGNAME=$(basename $0)
 TITLE="System Information Report For $HOSTNAME"
 CURRENT_TIME=$(date +"%x %r %Z")
@@ -21,6 +20,8 @@ report_disk_space () {
 }
 
 report_home_space () {
+    # %s formats the input argument as a string
+    # %8s allows space for 8 chars and %10s allows space for 10 chars
     local format="%8s%10s%10s\n"
     local i dir_list total_files total_dirs total_size user_name
     dir_list=$HOME
@@ -29,13 +30,17 @@ report_home_space () {
     echo "<h2>Home Space Utilization ($USER)</h2>"
 
     for i in $dir_list; do
-        # find recursively descends the directory tree 
+        # find recursively descends the directory tree
+        # find the current file and count the lines in the file
         total_files=$(find $i -type f | wc -l)
+        # find the directories and all files within the directory will be acted on before the dir itself
         total_dirs=$(find $i -type d | wc -l)
+        # cut -f will transform each line in the file into a list and cut the first word
         total_size=$(du -sh $i | cut -f 1 )
 
         echo "<h3>$i</h3>"
         echo "<pre>"
+        # printf uses the format to ingest the three following arguments
         printf "$format" "Dirs" "Files" "Size"
         printf "$format" "----" "-----" "----"
         printf "$format" $total_dirs $total_files $total_size
