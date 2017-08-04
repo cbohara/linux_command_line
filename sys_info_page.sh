@@ -21,8 +21,26 @@ report_disk_space () {
 }
 
 report_home_space () {
-    echo "<h2>Home Space Utilization ($USER)</h2>
-    <pre>$(du -sh $HOME)</pre>"
+    local format="%8s%10s%10s\n"
+    local i dir_list total_files total_dirs total_size user_name
+    dir_list=$HOME
+    user_name=$USER
+
+    echo "<h2>Home Space Utilization ($USER)</h2>"
+
+    for i in $dir_list; do
+        # find recursively descends the directory tree 
+        total_files=$(find $i -type f | wc -l)
+        total_dirs=$(find $i -type d | wc -l)
+        total_size=$(du -sh $i | cut -f 1 )
+
+        echo "<h3>$i</h3>"
+        echo "<pre>"
+        printf "$format" "Dirs" "Files" "Size"
+        printf "$format" "----" "-----" "----"
+        printf "$format" $total_dirs $total_files $total_size
+        echo "</pre>"
+    done
     return
 }
 
@@ -34,7 +52,8 @@ usage () {
 }
 
 write_html_page () {
-    echo "<html>
+    echo "
+    <html>
         <head>
             <title>$TITLE</title>
         </head>
