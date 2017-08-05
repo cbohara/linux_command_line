@@ -65,3 +65,8 @@ basic parameters
         first example below will return blank space because there is no variable $a_file
         ex: $a="foo"; echo "$a_file"; >>> 
             $a="foo"; echo "${a}_file"; >>> foo_file
+
+group command 
+    executes all commands in the current shell
+    fast and require less memory vs. running one command at a time
+    ex: { ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
