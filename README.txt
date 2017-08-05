@@ -56,3 +56,12 @@ you can't pipe read
 shell allows 1+ variable assignments to take place immediately before a command
 the assignment will alter the environment for the duration of the command execution
 once the command has completed the varible no longer exists
+
+basic parameters
+    $a
+        becomes whatever the variable a contains when expanded
+    ${a}
+        required if the variable is adjacent to other text
+        first example below will return blank space because there is no variable $a_file
+        ex: $a="foo"; echo "$a_file"; >>> 
+            $a="foo"; echo "${a}_file"; >>> foo_file
