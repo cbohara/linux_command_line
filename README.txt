@@ -1,6 +1,80 @@
 Notes from the book The Linux Command Line by William Shotts
 http://linuxcommand.org/tlcl.php
 
+shell = program that takes keyboard commands and passes them to the OS to carry out
+terminal = program used to interact with the shell
+
+processes
+    modern OS are usually multitasking 
+    create the illusion of doing more than 1 thing at once
+    rapidly switching from 1 executing program to another
+    
+    processes = how linux kernel different processes waiting their turn at the CPU
+    each process assigned a process ID (PID)
+
+    when a system starts up the kernel initiates its own activities as processes + launches init
+    init program runs a series of shell scripts called init scripts > start all system services
+    init = first process = always gets PID 1
+
+    ps x will show PID and status
+    px aux will show more info about CPU and memory usage
+
+    top will show the most recent running processes
+    highest PID number = the most recent process kicked off
+
+    to get the shell prompt back without terminating a program > put the program in the background using &
+    ex: xlogo &
+        xlogo program launched into background
+        job control will display [job #] PID in stdout
+        ex: [1] 1262
+
+    jobs command will list jobs launched from the terminal
+
+    return process to foreground using fg
+    ex: fg %1
+        fg command is followed by %job number
+    
+signals
+    kill [-signal] PID
+        doesn't necessarily kill a process
+        sends the process a signal
+        if no signal is specified then TERM (terminate) signal is sent by default
+
+        kill -HUP PID 
+            used by daemon programs to cause a reinitialization 
+            program will restart and re-read its config file
+        
+        kill -INT PID
+            INT (interrupt) like ctrl-c
+            usually terminates program
+        
+        kill -KILL PID
+            unlike other signals, KILL signal is not sent to the program itself
+            the kernel steps in and immediately kills the process
+            leaves no opportunity for process to clean up after itself
+            KILL should only be used as a last resort 
+
+        kill -TERM PID
+            default
+            terminates program if it is "alive" enough to receive signals
+
+        kill -STOP PID
+            process will pause without terminating
+            not sent to the target process
+            the kernel steps in a takes care of this
+
+        kill -CONT PID
+            will restore a process after the stop signal
+    
+
+    ctrl-c
+        sends INT (interrupt) signal
+    ctrl-z
+        sends TSTP (terminal stops) signal
+    programs listen for signals and may act on them as they are received
+
+    
+     
 variable=value
     no space!
     shell reads all values as string
