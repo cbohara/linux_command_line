@@ -70,3 +70,9 @@ group command
     executes all commands in the current shell
     fast and require less memory vs. running one command at a time
     ex: { ls -l; echo "Listing of foo.txt"; cat foo.txt; } > output.txt
+
+temporary files
+    use the mktemp program to name and create temporary files
+    X is replaced random # and letters
+    ex: tempfile=$(mktemp /tmp/foobar.$$.XXXXXXXXXX
+
